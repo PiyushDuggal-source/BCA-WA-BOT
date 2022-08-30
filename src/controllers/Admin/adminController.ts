@@ -5,22 +5,25 @@ import { PING_REPLIES, USER_COMMANDS } from "../../utils/reply/replies";
 import {
   BCA_SYLLABUS_CMD,
   BOOKS_CMD,
-  CALENDAR_COMMANDS,
-  CALENDAR_TYPOS,
   COMMANDS,
+  DSA_CMD,
   HELP_CMDS,
   IMP_DATES,
   IMP_LINK_CMD,
   NOTES_CMD,
+  PREVIOUS_YEAR_QPs,
   SOURCE,
 } from "../../utils/Commands/instructions";
-import { sendCalendar } from "../../actions/sendCalendar";
 import { sendNotes, sendNotesByFilter } from "../../actions/sendNotes";
 import { help } from "../../actions/help";
 import { sendSource } from "../../actions/sendSource";
-import { sendPlayList } from "../../actions/sendPlaylist";
 import { sendImpLinks } from "../../actions/sendImpLinks";
-import { BCA_STUDY_MATERIAL, BCA_SYLLABUS } from "../../resources/impContent";
+import {
+  BCA_STUDY_MATERIAL,
+  BCA_SYLLABUS,
+  DSA,
+  PREVIOUS_YEAR_QUESTIONS,
+} from "../../resources/impContent";
 
 export const adminControl = (bot: WAWebJS.Chat, message: string) => {
   // Ping Replies
@@ -34,13 +37,6 @@ export const adminControl = (bot: WAWebJS.Chat, message: string) => {
     } else {
       sendNotes(bot, "ADMIN");
     }
-
-    // Calender Replies WITH Typos
-  } else if (
-    CALENDAR_COMMANDS.includes(message.toLocaleLowerCase()) ||
-    CALENDAR_TYPOS.includes(message.toLocaleLowerCase())
-  ) {
-    sendCalendar(bot);
 
     // Commands Replies
   } else if (COMMANDS.includes(message.toLocaleLowerCase())) {
@@ -70,5 +66,15 @@ export const adminControl = (bot: WAWebJS.Chat, message: string) => {
   // For sending BCA BOOKS
   else if (BOOKS_CMD.includes(message.toLocaleLowerCase())) {
     sendMessage(bot, BCA_STUDY_MATERIAL, undefined, true);
+  }
+
+  // For sending PREVIOUS_YEAR_QPs
+  else if (PREVIOUS_YEAR_QPs.includes(message.toLocaleLowerCase())) {
+    sendMessage(bot, PREVIOUS_YEAR_QUESTIONS, undefined, true);
+  }
+
+  // For sending DSA
+  else if (DSA_CMD.includes(message.toLocaleLowerCase())) {
+    sendMessage(bot, DSA, undefined, true);
   }
 };
