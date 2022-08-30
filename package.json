@@ -1,0 +1,29 @@
+{
+  "name": "bca-wa-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc --skipLibCheck src/index.ts ",
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "date-fns": "^2.29.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2",
+    "qrcode-terminal": "^0.12.0",
+    "ts-node": "^10.9.1",
+    "whatsapp-web.js": "github:jtourisNS/whatsapp-web.js#fix-buttons-list",
+    "wwebjs-mongo": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/qrcode-terminal": "^0.12.0"
+  }
+}
