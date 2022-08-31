@@ -209,12 +209,12 @@ mongoose
     log(err, true);
   });
 
-// // Get Bot LIVE
-// // Continuously ping the server to prevent it from becoming idle
-// setInterval(async () => {
-//   await axios.get("https://bca-wa-bot.herokuapp.com/");
-//   console.log("[SERVER] Pinged server");
-// }, 28 * 60 * 1000); // every 15 minutes
+// Get Bot LIVE
+// Continuously ping the server to prevent it from becoming idle
+setInterval(async () => {
+  await axios.get("https://bca-wa-bot.herokuapp.com/");
+  console.log("[SERVER] Pinged server");
+}, 28 * 60 * 1000); // every 28 minutes
 
 const port = Number(process.env.PORT) || 3005;
 
