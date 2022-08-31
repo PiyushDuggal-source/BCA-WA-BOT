@@ -38,8 +38,21 @@ export const NOTES: Notes = [
     name: "C Language",
     content: [
       {
-        name: "C Language Notes",
+        name: "*C Language Notes*",
         link: "https://drive.google.com/file/d/1wscfPFFFRyt2MZeopBDdUYhx2_IYLxte/view",
+      },
+    ],
+  },
+  {
+    name: "Discrete Mathematics | Math",
+    content: [
+      {
+        name: "*Math Hand Written notes 1*",
+        link: "https://drive.google.com/file/d/1xmjBTpBt9FFGJpM9igzIhZUPiNFyM10H/view",
+      },
+      {
+        name: "*Math Hand Written*",
+        link: "https://drive.google.com/file/d/1xmjBTpBt9FFGJpM9igzIhZUPiNFyM10H/view",
       },
     ],
   },
