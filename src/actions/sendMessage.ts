@@ -24,3 +24,11 @@ export const sendMessage = (
 };
 
 export const random = (max: number): number => Math.floor(Math.random() * max);
+
+// Add Indian Time - `Classic Function`
+export function addIndianTime(date: Date): Date {
+  let numberOfMilliseconds = date.getTime();
+  let t0530inMilliseconds = 19800000;
+  date = new Date(numberOfMilliseconds + t0530inMilliseconds);
+  return date;
+}

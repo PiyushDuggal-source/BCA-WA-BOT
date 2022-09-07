@@ -15,7 +15,7 @@ import {
   HEY_EMOJIES,
   USER_JOIN_GREETINGS,
 } from "./utils/reply/replies";
-import { random } from "./actions/sendMessage";
+import { addIndianTime, random } from "./actions/sendMessage";
 const express = require("express");
 import axios from "axios";
 import * as dotenv from "dotenv";
@@ -23,6 +23,7 @@ import { Request, Response } from "express";
 import { COMMANDS_CMDS } from "./utils/Commands/instructions";
 import { grpJoinStickers, grpLeaveStickers } from "./assets/assets";
 import { log } from "./utils/log";
+import { endOfToday } from "date-fns";
 const mongoose = require("mongoose");
 const { MongoStore } = require("wwebjs-mongo");
 dotenv.config();
@@ -211,10 +212,16 @@ mongoose
 
 // Get Bot LIVE
 // Continuously ping the server to prevent it from becoming idle
-setInterval(async () => {
+const intervalId = setInterval(async () => {
   await axios.get("https://bca-wa-bot.herokuapp.com/");
   console.log("[SERVER] Pinged server");
 }, 28 * 60 * 1000); // every 28 minutes
+
+// To stop the bot at Night
+const etaMs = endOfToday().getTime() - addIndianTime(new Date()).getTime();
+setInterval(() => {
+  clearInterval(intervalId);
+}, etaMs);
 
 const port = Number(process.env.PORT) || 3005;
 
