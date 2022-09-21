@@ -22,7 +22,9 @@ import {
 } from "../../utils/Commands/instructions";
 import { USER_PING_MESSAGES } from "../../utils/messages/messages";
 import { PING_REPLIES, USER_COMMANDS } from "../../utils/reply/replies";
-export const userControl = (bot: WAWebJS.Chat, message: string) => {
+
+export const userControl = (bot: WAWebJS.Chat, msg: WAWebJS.Message) => {
+  const message = msg.body.slice(1);
   // Ping Message Reply
   if (USER_PING_MESSAGES.includes(message.toLocaleLowerCase())) {
     sendMessage(

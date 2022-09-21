@@ -10,8 +10,8 @@ export const main = (
 ) => {
   if (role === "ADMIN") {
     // Slice for removing BOT_PREFIX
-    adminControl(bot, message.body.slice(1));
+    adminControl(bot, message);
   } else if (role === "USER") {
-    userControl(bot, message.body.slice(1));
+    userControl(bot, message);
   }
 };

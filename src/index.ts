@@ -24,6 +24,7 @@ import { COMMANDS_CMDS } from "./utils/Commands/instructions";
 import { grpJoinStickers, grpLeaveStickers } from "./assets/assets";
 import { log } from "./utils/log";
 import { endOfToday } from "date-fns";
+import { pingEveryone } from "./actions/pingEveryone";
 const mongoose = require("mongoose");
 const { MongoStore } = require("wwebjs-mongo");
 dotenv.config();
@@ -33,7 +34,7 @@ const app = express();
 
 // For Development Enviornment
 const LOCAL = String(process.env.dev) === "true";
-const BOT = LOCAL ? 1 : 2;
+export const BOT = LOCAL ? 1 : 2;
 export const WA_BOT_ID = LOCAL
   ? (process.env.WA_BOT_ID_DEV as string)
   : (process.env.WA_BOT_ID as string);
@@ -101,12 +102,10 @@ mongoose
 
       // Mention Logic
       const str: string[] = message.mentionedIds;
-      const isMention =
-        (message.body[0] === "@" && str.includes("919871453667@c.us")) ||
-        message.body
-          .toLowerCase()
-          .split(" ")
-          .includes(`@${(process.env.BOT_NAME as String).toLocaleLowerCase()}`);
+      const isMention = message.body
+        .toLowerCase()
+        .split(" ")
+        .includes(`@${(process.env.BOT_NAME as String).toLocaleLowerCase()}`);
 
       if (isMention && bool !== "NONE") {
         const allChats = await client.getChats();
@@ -122,6 +121,14 @@ mongoose
         const allChats = await client.getChats();
         const WA_BOT = allChats[BOT];
         sendCommands(WA_BOT);
+      }
+
+      // Ping Everyone
+      if (
+        bool == "ADMIN" &&
+        ["everyone"].includes(message.body.split(",")[0].toLocaleLowerCase())
+      ) {
+        pingEveryone(client, message);
       }
       if (
         (bool === "ADMIN" || bool === "USER") &&

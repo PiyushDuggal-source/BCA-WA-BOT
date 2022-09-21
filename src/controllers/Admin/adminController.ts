@@ -25,7 +25,8 @@ import {
   PREVIOUS_YEAR_QUESTIONS,
 } from "../../resources/impContent";
 
-export const adminControl = (bot: WAWebJS.Chat, message: string) => {
+export const adminControl = (bot: WAWebJS.Chat, msg: WAWebJS.Message) => {
+  const message = msg.body.slice(1);
   // Ping Replies
   if (USER_PING_MESSAGES.includes(message.toLocaleLowerCase())) {
     sendMessage(bot, PING_REPLIES.admin[random(PING_REPLIES.adminMsgNumber)]);
