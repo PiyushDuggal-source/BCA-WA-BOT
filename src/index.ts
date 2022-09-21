@@ -33,12 +33,10 @@ const app = express();
 
 // For Development Enviornment
 const LOCAL = String(process.env.dev) === "true";
-const BOT = LOCAL ? 2 : 2;
-export const WA_BOT_ID =
-  // LOCAL
-  // ? (process.env.WA_BOT_ID_DEV as string)
-  // :
-  process.env.WA_BOT_ID as string;
+const BOT = LOCAL ? 1 : 2;
+export const WA_BOT_ID = LOCAL
+  ? (process.env.WA_BOT_ID_DEV as string)
+  : (process.env.WA_BOT_ID as string);
 
 // Initializing Client
 

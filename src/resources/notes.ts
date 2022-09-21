@@ -56,4 +56,17 @@ export const NOTES: Notes = [
       },
     ],
   },
+  {
+    name: "BCLS 22 and 21 Notes",
+    content: [
+      {
+        name: "BCLS 22",
+        link: "https://drive.google.com/file/d/1UgsrbjhJj9XazZYlFky3--CXsz528NK8/view",
+      },
+      {
+        name: "BCLS 21",
+        link: "https://drive.google.com/file/d/12LXubRxXqHkSZIuHax3DKtjxoIusgba6/view",
+      },
+    ],
+  },
 ];
