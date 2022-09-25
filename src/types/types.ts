@@ -102,3 +102,7 @@ export interface WA_Grp extends WAWebJS.Chat {
     isSuperAdmin: boolean;
   }[];
 }
+
+export interface MediaMsg extends WAWebJS.Message {
+  mimetype?: string | undefined;
+}

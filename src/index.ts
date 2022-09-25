@@ -15,7 +15,7 @@ import {
   HEY_EMOJIES,
   USER_JOIN_GREETINGS,
 } from "./utils/reply/replies";
-import { addIndianTime, random } from "./actions/sendMessage";
+import { addIndianTime, random, sendMessage } from "./actions/sendMessage";
 const express = require("express");
 import axios from "axios";
 import * as dotenv from "dotenv";
@@ -25,6 +25,7 @@ import { grpJoinStickers, grpLeaveStickers } from "./assets/assets";
 import { log } from "./utils/log";
 import { endOfToday } from "date-fns";
 import { pingEveryone } from "./actions/pingEveryone";
+import { MediaMsg } from "./types/types";
 const mongoose = require("mongoose");
 const { MongoStore } = require("wwebjs-mongo");
 dotenv.config();
@@ -136,6 +137,29 @@ mongoose
       ) {
         const allChats = await client.getChats();
         const WA_BOT = allChats[BOT];
+        const msg: MediaMsg[] = await WA_BOT.fetchMessages({ limit: 2 });
+        const invalidChat = await client.getChatById("120363023005574423@g.us");
+        for (const m of msg) {
+          console.log(m.mimetype);
+          console.log(m.type);
+          if (
+            ["image/png", "image/jpg", "image/jpeg", "image"].includes(
+              m.type || ""
+            )
+          ) {
+            await m.forward(invalidChat);
+            console.log("\nin\n");
+            console.log(m.mimetype);
+            // sendMessage(
+            //   WA_BOT,
+            //   {
+            //     mimetype: "image/jpeg",
+            //     data: m.body,
+            //   },
+            //   true
+            // );
+          }
+        }
         main(WA_BOT, message, bool);
       }
     });
